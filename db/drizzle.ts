@@ -1,4 +1,6 @@
-import { config } from "dotenv";
+// Make sure to install the '@neondatabase/serverless' package
+import { Pool } from "@neondatabase/serverless";
 import { drizzle } from "drizzle-orm/neon-serverless";
-config({ path: ".env" });
-export const db = drizzle(process.env.DATABASE_URL!);
+
+const pool = new Pool({ connectionString: process.env.DATABASE_URL });
+export const db = drizzle({ client: pool });

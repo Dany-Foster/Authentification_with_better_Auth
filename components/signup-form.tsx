@@ -1,4 +1,4 @@
-import { cn } from "cn";
+"use client";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -9,6 +9,8 @@ import {
   FieldSeparator,
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
+import { SignUp } from "@/server/users";
+import { cn } from "cn";
 
 export function SignupForm({
   className,
@@ -29,7 +31,6 @@ export function SignupForm({
             id="name"
             type="text"
             placeholder="John Doe"
-            required
             className="bg-background"
           />
         </Field>
@@ -39,18 +40,12 @@ export function SignupForm({
             id="email"
             type="email"
             placeholder="m@example.com"
-            required
             className="bg-background"
           />
         </Field>
         <Field>
           <FieldLabel htmlFor="password">Password</FieldLabel>
-          <Input
-            id="password"
-            type="password"
-            required
-            className="bg-background"
-          />
+          <Input id="password" type="password" className="bg-background" />
           <FieldDescription>
             Must be at least 8 characters long.
           </FieldDescription>
@@ -60,13 +55,14 @@ export function SignupForm({
           <Input
             id="confirm-password"
             type="password"
-            required
             className="bg-background"
           />
           <FieldDescription>Please confirm your password.</FieldDescription>
         </Field>
         <Field>
-          <Button type="submit">Create Account</Button>
+          <Button type="button" onClick={() => SignUp()}>
+            Create Account
+          </Button>
         </Field>
         <FieldSeparator>Or continue with</FieldSeparator>
         <Field>
